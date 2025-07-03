@@ -1,5 +1,6 @@
 import Phaser from 'phaser';
 import WorldGenerator from '../../utils/WorldGenerator'
+import {EventBus} from "@/game/EventBus";
 
 class MainScene extends Phaser.Scene
 {
@@ -20,6 +21,14 @@ class MainScene extends Phaser.Scene
 
     create ()
     {
+        EventBus.on('randomize-world', () => {
+            this.randomizeWorld();
+        });
+
+        this.createWorld()
+    }
+
+    createWorld(){
         const mapData = new Phaser.Tilemaps.MapData({
             width: this.worldGenerator.size,
             height: this.worldGenerator.size,
@@ -51,18 +60,24 @@ class MainScene extends Phaser.Scene
 
         });
     }
+
+    randomizeWorld (): void {
+        console.log('Randomize World Game');
+        this.worldGenerator.randomizeWorld(4);
+        this.createWorld();
+    }
 }
-
-const config = {
-    type: Phaser.AUTO,
-    width: 800,
-    height: 600,
-    backgroundColor: '#2d2d2d',
-    parent: 'phaser-example',
-    pixelArt: true,
-    scene: MainScene
-};
-
-const game = new Phaser.Game(config);
+//
+// const config = {
+//     type: Phaser.AUTO,
+//     width: 800,
+//     height: 600,
+//     backgroundColor: '#2d2d2d',
+//     parent: 'phaser-example',
+//     pixelArt: true,
+//     scene: MainScene
+// };
+//
+// const game = new Phaser.Game(config);
 
 export default MainScene;
