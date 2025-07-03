@@ -70,7 +70,7 @@ class MainScene extends Phaser.Scene
 
     randomizeWorld (): void {
         console.log('Randomize World Game');
-        this.worldGenerator.randomizeWorld(4);
+        this.worldGenerator.randomizeWorld(5);
         this.createWorld();
     }
 

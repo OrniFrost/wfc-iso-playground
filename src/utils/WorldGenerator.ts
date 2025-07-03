@@ -14,13 +14,15 @@ class WorldGenerator {
     randomizeWorld(nbTile: number){
         for(let i=0; i<this.size; i++){
             for(let j=0; j<this.size; j++){
-                this.world.grid[i][j] = this.getRandomInt(nbTile)
+                this.world.grid[i][j] = this.getRandomIntInclusive(1, nbTile-1)
             }
         }
     }
 
-    getRandomInt(max) {
-        return Math.floor(Math.random() * max);
+    getRandomIntInclusive(min, max) {
+        min = Math.ceil(min);
+        max = Math.floor(max);
+        return Math.floor(Math.random() * (max - min + 1)) + min;
     }
 }
 
