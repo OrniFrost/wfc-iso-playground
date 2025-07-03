@@ -5,12 +5,14 @@ import {EventBus} from "@/game/EventBus";
 class MainScene extends Phaser.Scene
 {
     worldGenerator: WorldGenerator;
+    currentMap: Phaser.Tilemaps.Tilemap;
+    currentLayer: Phaser.Tilemaps.TilemapLayer;
 
     constructor ()
     {
         super();
         this.worldGenerator = new WorldGenerator(15)
-        this.worldGenerator.randomizeWorld(4);
+        // this.worldGenerator.randomizeWorld(4);
     }
 
     preload ()
@@ -25,10 +27,22 @@ class MainScene extends Phaser.Scene
             this.randomizeWorld();
         });
 
+        EventBus.on('change-world-size', (size) => {
+            this.changeWorldSize(size);
+        });
+
         this.createWorld()
     }
 
     createWorld(){
+        // Destroy existing tilemap if it exists
+        if (this.currentLayer) {
+            this.currentLayer.destroy();
+        }
+        if (this.currentMap) {
+            this.currentMap.destroy();
+        }
+
         const mapData = new Phaser.Tilemaps.MapData({
             width: this.worldGenerator.size,
             height: this.worldGenerator.size,
@@ -38,32 +52,31 @@ class MainScene extends Phaser.Scene
             format: Phaser.Tilemaps.Formats.ARRAY_2D
         });
 
-        const map = new Phaser.Tilemaps.Tilemap(this, mapData);
-
-        const tileset = map.addTilesetImage('test_tilemap', 'tiles');
-
-        const layer = map.createBlankLayer('layer', tileset, 450, 256);
+        this.currentMap = new Phaser.Tilemaps.Tilemap(this, mapData);
+        const tileset = this.currentMap.addTilesetImage('test_tilemap', 'tiles');
+        this.currentLayer = this.currentMap.createBlankLayer('layer', tileset, 450, 256);
 
         const data = this.worldGenerator.world.grid;
-
         let y = 0;
 
         data.forEach(row => {
-
             row.forEach((tile, x) => {
-
-                layer.putTileAt(tile, x, y);
-
+                this.currentLayer.putTileAt(tile, x, y);
             });
-
             y++;
-
         });
     }
+
 
     randomizeWorld (): void {
         console.log('Randomize World Game');
         this.worldGenerator.randomizeWorld(4);
+        this.createWorld();
+    }
+
+    changeWorldSize(size: number): void {
+        console.log('Change WorldSize '+ size);
+        this.worldGenerator = new WorldGenerator(size);
         this.createWorld();
     }
 }

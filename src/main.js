@@ -3,4 +3,9 @@ import './assets/main.css'
 import { createApp } from 'vue'
 import App from './App.vue'
 
-createApp(App).mount('#app')
+import VueSlider from 'vue-slider-component'
+import 'vue-slider-component/theme/default.css'
+
+const app = createApp(App)
+app.component('VueSlider', VueSlider)
+app.mount('#app')
