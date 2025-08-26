@@ -17,8 +17,7 @@ class MainScene extends Phaser.Scene
 
     preload ()
     {
-        // this.load.setBaseURL('https://cdn.phaserfiles.com/v385');
-        this.load.image('tiles', 'src/assets/test_tilemap.png');
+        this.load.image('tiles', 'src/assets/tilemap.png');
     }
 
     create ()
@@ -46,14 +45,14 @@ class MainScene extends Phaser.Scene
         const mapData = new Phaser.Tilemaps.MapData({
             width: this.worldGenerator.size,
             height: this.worldGenerator.size,
-            tileWidth: 64,
-            tileHeight: 32,
+            tileWidth: 32,
+            tileHeight: 16,
             orientation: Phaser.Tilemaps.Orientation.ISOMETRIC,
-            format: Phaser.Tilemaps.Formats.ARRAY_2D
+            format: Phaser.Tilemaps.Formats.ARRAY_2D,
         });
 
         this.currentMap = new Phaser.Tilemaps.Tilemap(this, mapData);
-        const tileset = this.currentMap.addTilesetImage('test_tilemap', 'tiles');
+        const tileset = this.currentMap.addTilesetImage('tilemap', 'tiles',32,32);
         this.currentLayer = this.currentMap.createBlankLayer('layer', tileset, 450, 256);
 
         const data = this.worldGenerator.world.grid;
@@ -70,7 +69,7 @@ class MainScene extends Phaser.Scene
 
     randomizeWorld (): void {
         console.log('Randomize World Game');
-        this.worldGenerator.randomizeWorld(5);
+        this.worldGenerator.randomizeWorld(39);
         this.createWorld();
     }
 
@@ -80,17 +79,5 @@ class MainScene extends Phaser.Scene
         this.createWorld();
     }
 }
-//
-// const config = {
-//     type: Phaser.AUTO,
-//     width: 800,
-//     height: 600,
-//     backgroundColor: '#2d2d2d',
-//     parent: 'phaser-example',
-//     pixelArt: true,
-//     scene: MainScene
-// };
-//
-// const game = new Phaser.Game(config);
 
 export default MainScene;
