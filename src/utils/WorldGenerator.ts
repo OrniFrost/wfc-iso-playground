@@ -1,29 +1,28 @@
 import World from './World'
+import Tile from "@/utils/Tile";
+import {randomChoice} from "@/utils/Utils";
 
 
 class WorldGenerator {
 
     world: World;
     size: number;
+    tiles: Tile[];
 
-    constructor(size: number) {
-        this.world = new World(size);
+    constructor(size: number, tiles: Tile[]) {
+        this.world = new World(size, tiles);
+        this.tiles = tiles
         this.size = size;
     }
 
-    randomizeWorld(nbTile: number){
+    randomizeWorld(nbTile: number): void{
         for(let i=0; i<this.size; i++){
             for(let j=0; j<this.size; j++){
-                this.world.grid[i][j] = this.getRandomIntInclusive(1, nbTile-1)
+                this.world.grid[i][j].possibleTiles = [randomChoice(this.world.grid[i][j].possibleTiles)]
             }
         }
     }
 
-    getRandomIntInclusive(min, max) {
-        min = Math.ceil(min);
-        max = Math.floor(max);
-        return Math.floor(Math.random() * (max - min + 1)) + min;
-    }
 }
 
 export default WorldGenerator;

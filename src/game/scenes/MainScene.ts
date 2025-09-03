@@ -1,17 +1,24 @@
 import Phaser from 'phaser';
 import WorldGenerator from '../../utils/WorldGenerator'
 import {EventBus} from "@/game/EventBus";
+import Tile from "@/utils/Tile";
+import TilesConstructor from "@/utils/TilesConstructor";
+
 
 class MainScene extends Phaser.Scene
 {
     worldGenerator: WorldGenerator;
-    currentMap: Phaser.Tilemaps.Tilemap;
-    currentLayer: Phaser.Tilemaps.TilemapLayer;
+    currentMap: Phaser.Tilemaps.Tilemap | null = null;
+    currentLayer: Phaser.Tilemaps.TilemapLayer | null = null;
+    tilesConstructor : TilesConstructor;
+
 
     constructor ()
     {
         super();
-        this.worldGenerator = new WorldGenerator(15)
+        this.tilesConstructor = new TilesConstructor();
+        this.worldGenerator = new WorldGenerator(15, this.tilesConstructor.tiles)
+
         // this.worldGenerator.randomizeWorld(4);
     }
 
@@ -26,7 +33,7 @@ class MainScene extends Phaser.Scene
             this.randomizeWorld();
         });
 
-        EventBus.on('change-world-size', (size) => {
+        EventBus.on('change-world-size', (size: any) => {
             this.changeWorldSize(size);
         });
 
@@ -53,14 +60,16 @@ class MainScene extends Phaser.Scene
 
         this.currentMap = new Phaser.Tilemaps.Tilemap(this, mapData);
         const tileset = this.currentMap.addTilesetImage('tilemap', 'tiles',32,32);
-        this.currentLayer = this.currentMap.createBlankLayer('layer', tileset, 450, 256);
+        if (tileset) {
+            this.currentLayer = this.currentMap.createBlankLayer('layer', tileset, 450, 256);
+        }
 
         const data = this.worldGenerator.world.grid;
         let y = 0;
 
         data.forEach(row => {
             row.forEach((tile, x) => {
-                this.currentLayer.putTileAt(tile, x, y);
+                this.currentLayer?.putTileAt(tile.possibleTiles[0].id, x, y);
             });
             y++;
         });
@@ -75,7 +84,7 @@ class MainScene extends Phaser.Scene
 
     changeWorldSize(size: number): void {
         console.log('Change WorldSize '+ size);
-        this.worldGenerator = new WorldGenerator(size);
+        this.worldGenerator = new WorldGenerator(size, this.tilesConstructor.tiles);
         this.createWorld();
     }
 }
