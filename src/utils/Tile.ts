@@ -16,6 +16,7 @@ class Tile {
     matchToOther(other: Tile, direction: Direction): boolean {
         switch (direction) {
             case Direction.North:
+                // console.log(this.edges.get(Direction.North) +" <> "+this.reverseString(other.edges.get(Direction.South) ?? ""))
                 return this.edges.get(Direction.North) === this.reverseString(other.edges.get(Direction.South) ?? "");
             case Direction.East:
                 return this.edges.get(Direction.East) === this.reverseString(other.edges.get(Direction.West) ?? "");
@@ -30,6 +31,10 @@ class Tile {
 
     private reverseString(str: string): string {
         return str.split("").reverse().join("");
+    }
+
+    toString(): string{
+        return `id ${this.id}`
     }
 }
 

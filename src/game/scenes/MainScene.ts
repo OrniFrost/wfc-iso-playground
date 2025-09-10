@@ -1,8 +1,8 @@
 import Phaser from 'phaser';
 import WorldGenerator from '../../utils/WorldGenerator'
 import {EventBus} from "@/game/EventBus";
-import Tile from "@/utils/Tile";
 import TilesConstructor from "@/utils/TilesConstructor";
+import Direction from "@/utils/Directions";
 
 
 class MainScene extends Phaser.Scene
@@ -37,6 +37,10 @@ class MainScene extends Phaser.Scene
             this.changeWorldSize(size);
         });
 
+        EventBus.on('wave-function-collapse', () => {
+            this.generateWaveFunctionCollapse()
+        })
+
         this.createWorld()
     }
 
@@ -69,7 +73,13 @@ class MainScene extends Phaser.Scene
 
         data.forEach(row => {
             row.forEach((tile, x) => {
-                this.currentLayer?.putTileAt(tile.possibleTiles[0].id, x, y);
+                if(tile.isCollapsed){
+
+                    this.currentLayer?.putTileAt(tile.possibleTiles[0].id, y, x);
+                }else{
+                    this.currentLayer?.putTileAt(this.tilesConstructor.tiles[0].id, y, x);
+                }
+
             });
             y++;
         });
@@ -86,6 +96,13 @@ class MainScene extends Phaser.Scene
         console.log('Change WorldSize '+ size);
         this.worldGenerator = new WorldGenerator(size, this.tilesConstructor.tiles);
         this.createWorld();
+    }
+
+    generateWaveFunctionCollapse(): void {
+        console.log('Generate WaveFunctionCollapse');
+        this.worldGenerator.waveFunctionCollapse(() => this.createWorld(), 2);
+        this.createWorld();
+
     }
 }
 

@@ -9,12 +9,12 @@ class World {
 
     constructor(size: number, tiles: Tile[]) {
         this.size = size;
-        this.tiles = tiles;
+        this.tiles = [...tiles];
         this.grid = [];
         for (let i = 0; i < size; i++) {
             this.grid[i] = [];
             for (let j = 0; j < size; j++) {
-                this.grid[i][j] = new Cell(i,j, tiles);
+                this.grid[i][j] = new Cell(i,j, [...tiles]);
             }
         }
 
@@ -34,9 +34,16 @@ class World {
                 }
             }
         }
+
+        let middle = Math.floor(this.size / 2);
+        this.grid[middle][middle].possibleTiles = [this.tiles[2]];
+        this.grid[middle][middle].isCollapsed = true;
+
+        this.updateEntropies(this.grid[middle][middle])
     }
 
     updateEntropies(cell: Cell): void {
+
         if (cell.isCollapsed){
             for (var [direction, neighborCell] of cell.neighbors){
                 if (!neighborCell.isCollapsed){
@@ -53,18 +60,24 @@ class World {
         }else{
             for (var [direction, neighborCell] of cell.neighbors){
                 if (!neighborCell.isCollapsed){
-                    let newPossibleTiles: Tile[] = []
+                    const newPossibleTiles: Tile[] = []
                     for (let tile of cell.possibleTiles){
-                        let possibleTiles: Tile[] = []
+                        const possibleTiles: Tile[] = []
                         for (let t of neighborCell.possibleTiles){
-                            if (tile.matchToOther(t,direction) && !newPossibleTiles.includes(t)){
-                                possibleTiles.push(tile);
+                            let res: boolean = false;
+
+                            for (let ti of newPossibleTiles){
+                                if (ti.id === t.id) {res = true}
+                            }
+
+                            if (tile.matchToOther(t,direction) && !res){
+                                possibleTiles.push(t);
                             }
                         }
                         newPossibleTiles.push(...possibleTiles)
                     }
                     if(neighborCell.possibleTiles.length != newPossibleTiles.length){
-                        neighborCell.possibleTiles = newPossibleTiles;
+                        neighborCell.possibleTiles = [...newPossibleTiles];
                         this.updateEntropies(neighborCell)
                     }
                 }
@@ -73,6 +86,7 @@ class World {
     }
 
     getMinEtropyCells(): Cell[]{
+        console.log("Getting minEtropy cells");
         let minEntropyCells: Cell[] = [];
         let minEntropy: number = Infinity
 

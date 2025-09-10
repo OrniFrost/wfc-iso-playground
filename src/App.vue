@@ -15,6 +15,10 @@ const changeWorldSize = () => {
   EventBus.emit("change-world-size", size.value);
 }
 
+const wfc = () => {
+  EventBus.emit("wave-function-collapse");
+}
+
 
 </script>
 <template>
@@ -33,6 +37,9 @@ const changeWorldSize = () => {
       >
         World size
       </vue-slider>
+      <div>
+        <button @click="wfc">Generate wave function collapse</button>
+      </div>
     </div>
   </div>
 </template>

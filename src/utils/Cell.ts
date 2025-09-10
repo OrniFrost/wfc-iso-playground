@@ -40,6 +40,10 @@ class Cell{
         this.possibleTiles = [randomTile];
     }
 
+    toString(): string {
+        return `Cell ${this.pos}, isCollapsed: ${this.isCollapsed}`
+    }
+
 }
 
 export default Cell;
