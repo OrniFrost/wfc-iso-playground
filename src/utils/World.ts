@@ -34,12 +34,12 @@ class World {
                 }
             }
         }
-
-        let middle = Math.floor(this.size / 2);
-        this.grid[middle][middle].possibleTiles = [this.tiles[2]];
-        this.grid[middle][middle].isCollapsed = true;
-
-        this.updateEntropies(this.grid[middle][middle])
+        //
+        // let middle = Math.floor(this.size / 2);
+        // this.grid[middle][middle].possibleTiles = [this.tiles[2]];
+        // this.grid[middle][middle].isCollapsed = true;
+        //
+        // this.updateEntropies(this.grid[middle][middle])
     }
 
     updateEntropies(cell: Cell): void {

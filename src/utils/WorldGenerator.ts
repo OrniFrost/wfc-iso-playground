@@ -32,7 +32,7 @@ class WorldGenerator {
             console.log((cellsWithLowestEntropy.length))
             if(cellsWithLowestEntropy.length != 0){
                 let cell: Cell = randomChoice(cellsWithLowestEntropy)
-                cell.collapseWithRandomTile()
+                cell.collapseWithRandomTileWeighted()
                 this.world.updateEntropies(cell);
                 refreshWorld()
 

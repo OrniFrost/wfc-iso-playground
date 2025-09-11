@@ -41,7 +41,60 @@ class MainScene extends Phaser.Scene
             this.generateWaveFunctionCollapse()
         })
 
+
+        this.cameras.main.setZoom(1); // Initial zoom level
+
+
+        this.input.on('wheel', (pointer: any, gameObjects: any, deltaX: number, deltaY: number) => {
+            const currentZoom = this.cameras.main.zoom;
+
+            const newZoom = deltaY > 0 ?
+                Math.max(0.5, currentZoom - 0.1) : // Zoom out (min 0.5)
+                Math.min(2, currentZoom + 0.1);    // Zoom in (max 2)
+
+            this.cameras.main.setZoom(newZoom);
+        })
+
         this.createWorld()
+    }
+
+    update() {
+
+        const keyboard = this.input.keyboard;
+        if (keyboard && keyboard.addKey) {
+            const plusKey = keyboard.addKey('+');
+            const minusKey = keyboard.addKey('-');
+
+            if (plusKey.isDown) {
+                this.cameras.main.setZoom(Math.min(2, this.cameras.main.zoom + 0.01));
+            } else if (minusKey.isDown) {
+                this.cameras.main.setZoom(Math.max(0.5, this.cameras.main.zoom - 0.01));
+            }
+
+            const moveSpeed = 8;
+
+            const leftKey = keyboard.addKey('LEFT');
+            const rightKey = keyboard.addKey('RIGHT');
+            const upKey = keyboard.addKey('UP');
+            const downKey = keyboard.addKey('DOWN');
+
+            const wKey = keyboard.addKey('W');
+            const aKey = keyboard.addKey('A');
+            const sKey = keyboard.addKey('S');
+            const dKey = keyboard.addKey('D');
+
+            if (leftKey.isDown || aKey.isDown) {
+                this.cameras.main.scrollX -= moveSpeed;
+            } else if (rightKey.isDown || dKey.isDown) {
+                this.cameras.main.scrollX += moveSpeed;
+            }
+
+            if (upKey.isDown || wKey.isDown) {
+                this.cameras.main.scrollY -= moveSpeed;
+            } else if (downKey.isDown || sKey.isDown) {
+                this.cameras.main.scrollY += moveSpeed;
+            }
+        }
     }
 
     createWorld(){

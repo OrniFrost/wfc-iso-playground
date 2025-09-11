@@ -37,6 +37,7 @@ const wfc = () => {
       >
         World size
       </vue-slider>
+      <br>
       <div>
         <button @click="wfc">Generate wave function collapse</button>
       </div>
