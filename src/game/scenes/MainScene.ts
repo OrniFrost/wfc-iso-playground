@@ -140,6 +140,8 @@ class MainScene extends Phaser.Scene
             });
             y++;
         });
+
+
     }
 
 

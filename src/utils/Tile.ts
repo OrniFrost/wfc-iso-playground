@@ -1,16 +1,22 @@
 import Direction from "@/utils/Directions";
-import Directions from "@/utils/Directions";
+import { weightStore } from "@/store/weightStore";
+
 
 
 class Tile {
     id: number;
     edges: Map<Direction, string>;
-    weight: number;
+    weightCatId: number
 
-    constructor(id: number) {
+    constructor(id: number, weightCatId: number) {
         this.id = id;
         this.edges = new Map();
-        this.weight = 1;
+        this.weightCatId = weightCatId;
+    }
+
+    getWeight(): number {
+        const weightCategory = weightStore.weights.find(w => w.id == this.weightCatId)
+        return  weightCategory ? weightCategory.weight : 1;
     }
 
     matchToOther(other: Tile, direction: Direction): boolean {

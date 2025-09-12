@@ -30,7 +30,7 @@ class Cell{
         const tiles: Tile[] = [];
         for (const tile of this.possibleTiles) {
             let arr: Tile[] = [];
-            for (let i = 0; i < tile.weight; i++) {
+            for (let i = 0; i < tile.getWeight(); i++) {
                 arr.push(tile);
             }
 

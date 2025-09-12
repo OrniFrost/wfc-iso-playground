@@ -13,6 +13,7 @@ F: Bridge
 const tilesInfos = [
     {
         id: 0,
+        weightCatId : 1,
         edges : [
             {
                 face: Direction.North,
@@ -34,6 +35,7 @@ const tilesInfos = [
     },
     {
         id: 1,
+        weightCatId : 2,
         edges : [
             {
                 face: Direction.North,
@@ -55,6 +57,7 @@ const tilesInfos = [
     },
     {
         id: 2,
+        weightCatId : 2,
         edges : [
             {
                 face: Direction.North,
@@ -76,6 +79,7 @@ const tilesInfos = [
     },
     {
         id: 3,
+        weightCatId : 3,
         edges : [
             {
                 face: Direction.North,
@@ -97,6 +101,7 @@ const tilesInfos = [
     },
     {
         id: 4,
+        weightCatId : 3,
         edges : [
             {
                 face: Direction.North,
@@ -118,6 +123,7 @@ const tilesInfos = [
     },
     {
         id: 5,
+        weightCatId : 3,
         edges : [
             {
                 face: Direction.North,
@@ -139,6 +145,7 @@ const tilesInfos = [
     },
     {
         id: 6,
+        weightCatId : 3,
         edges : [
             {
                 face: Direction.North,
@@ -160,6 +167,7 @@ const tilesInfos = [
     },
     {
         id: 7,
+        weightCatId : 4,
         edges : [
             {
                 face: Direction.North,
@@ -181,6 +189,7 @@ const tilesInfos = [
     },
     {
         id: 8,
+        weightCatId : 4,
         edges : [
             {
                 face: Direction.North,
@@ -202,6 +211,7 @@ const tilesInfos = [
     },
     {
         id: 9,
+        weightCatId : 4,
         edges : [
             {
                 face: Direction.North,
@@ -223,6 +233,7 @@ const tilesInfos = [
     },
     {
         id: 10,
+        weightCatId : 4,
         edges : [
             {
                 face: Direction.North,
@@ -244,6 +255,7 @@ const tilesInfos = [
     },
     {
         id: 11,
+        weightCatId : 5,
         edges : [
             {
                 face: Direction.North,
@@ -265,6 +277,7 @@ const tilesInfos = [
     },
     {
         id: 12,
+        weightCatId : 6,
         edges : [
             {
                 face: Direction.North,
@@ -286,6 +299,7 @@ const tilesInfos = [
     },
     {
         id: 13,
+        weightCatId : 6,
         edges : [
             {
                 face: Direction.North,
@@ -307,6 +321,7 @@ const tilesInfos = [
     },
     {
         id: 14,
+        weightCatId : 7,
         edges : [
             {
                 face: Direction.North,
@@ -328,6 +343,7 @@ const tilesInfos = [
     },
     {
         id: 15,
+        weightCatId : 7,
         edges : [
             {
                 face: Direction.North,
@@ -349,6 +365,7 @@ const tilesInfos = [
     },
     {
         id: 16,
+        weightCatId : 7,
         edges : [
             {
                 face: Direction.North,
@@ -370,6 +387,7 @@ const tilesInfos = [
     },
     {
         id: 17,
+        weightCatId : 7,
         edges : [
             {
                 face: Direction.North,
@@ -391,6 +409,7 @@ const tilesInfos = [
     },
     {
         id: 18,
+        weightCatId : 8,
         edges : [
             {
                 face: Direction.North,
@@ -412,6 +431,7 @@ const tilesInfos = [
     },
     {
         id: 19,
+        weightCatId : 8,
         edges : [
             {
                 face: Direction.North,
@@ -434,6 +454,7 @@ const tilesInfos = [
     //Harvest
     {
         id: 20,
+        weightCatId : 9,
         edges : [
             {
                 face: Direction.North,
@@ -455,6 +476,7 @@ const tilesInfos = [
     },
     {
         id: 21,
+        weightCatId : 10,
         edges : [
             {
                 face: Direction.North,
@@ -476,6 +498,7 @@ const tilesInfos = [
     },
     {
         id: 22,
+        weightCatId : 10,
         edges : [
             {
                 face: Direction.North,
@@ -497,6 +520,7 @@ const tilesInfos = [
     },
     {
         id: 23,
+        weightCatId : 10,
         edges : [
             {
                 face: Direction.North,
@@ -518,6 +542,7 @@ const tilesInfos = [
     },
     {
         id: 24,
+        weightCatId : 10,
         edges : [
             {
                 face: Direction.North,
@@ -539,6 +564,7 @@ const tilesInfos = [
     },
     {
         id: 25,
+        weightCatId : 10,
         edges : [
             {
                 face: Direction.North,
@@ -560,6 +586,7 @@ const tilesInfos = [
     },
     {
         id: 26,
+        weightCatId : 10,
         edges : [
             {
                 face: Direction.North,
@@ -581,6 +608,7 @@ const tilesInfos = [
     },
     {
         id: 27,
+        weightCatId : 10,
         edges : [
             {
                 face: Direction.North,
@@ -602,6 +630,7 @@ const tilesInfos = [
     },
     {
         id: 28,
+        weightCatId : 10,
         edges : [
             {
                 face: Direction.North,
@@ -623,6 +652,7 @@ const tilesInfos = [
     },
     {
         id: 29,
+        weightCatId : 10,
         edges : [
             {
                 face: Direction.North,
@@ -645,6 +675,7 @@ const tilesInfos = [
     //Cliff
     {
         id: 30,
+        weightCatId : 11,
         edges : [
             {
                 face: Direction.North,
@@ -666,6 +697,7 @@ const tilesInfos = [
     },
     {
         id: 31,
+        weightCatId : 11,
         edges : [
             {
                 face: Direction.North,
@@ -687,6 +719,7 @@ const tilesInfos = [
     },
     {
         id: 32,
+        weightCatId : 12,
         edges : [
             {
                 face: Direction.North,
@@ -708,6 +741,7 @@ const tilesInfos = [
     },
     {
         id: 33,
+        weightCatId : 12,
         edges : [
             {
                 face: Direction.North,
@@ -729,6 +763,7 @@ const tilesInfos = [
     },
     {
         id: 34,
+        weightCatId : 12,
         edges : [
             {
                 face: Direction.North,
@@ -750,6 +785,7 @@ const tilesInfos = [
     },
     {
         id: 35,
+        weightCatId : 12,
         edges : [
             {
                 face: Direction.North,
@@ -771,6 +807,7 @@ const tilesInfos = [
     },
     {
         id: 36,
+        weightCatId : 13,
         edges : [
             {
                 face: Direction.North,
@@ -792,6 +829,7 @@ const tilesInfos = [
     },
     {
         id: 37,
+        weightCatId : 13,
         edges : [
             {
                 face: Direction.North,
@@ -813,6 +851,7 @@ const tilesInfos = [
     },
     {
         id: 38,
+        weightCatId : 14,
         edges : [
             {
                 face: Direction.North,
@@ -834,6 +873,7 @@ const tilesInfos = [
     },
     {
         id: 39,
+        weightCatId : 14,
         edges : [
             {
                 face: Direction.North,
