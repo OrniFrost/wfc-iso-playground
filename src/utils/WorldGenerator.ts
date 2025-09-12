@@ -47,6 +47,10 @@ class WorldGenerator {
         }
     }
 
+    resetWorld(): void {
+        this.world = new World(this.size, this.tiles);
+    }
+
 }
 
 export default WorldGenerator;

@@ -41,6 +41,10 @@ class MainScene extends Phaser.Scene
             this.generateWaveFunctionCollapse()
         })
 
+        EventBus.on('reset', () => {
+            this.resetWorld();
+        })
+
 
         this.cameras.main.setZoom(1); // Initial zoom level
 
@@ -155,7 +159,11 @@ class MainScene extends Phaser.Scene
         console.log('Generate WaveFunctionCollapse');
         this.worldGenerator.waveFunctionCollapse(() => this.createWorld(), 2);
         this.createWorld();
+    }
 
+    resetWorld(): void {
+        this.worldGenerator.resetWorld()
+        this.createWorld()
     }
 }
 

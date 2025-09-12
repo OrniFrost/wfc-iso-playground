@@ -19,6 +19,9 @@ const wfc = () => {
   EventBus.emit("wave-function-collapse");
 }
 
+const reset = () => {
+  EventBus.emit("reset");
+}
 
 </script>
 <template>
@@ -40,6 +43,10 @@ const wfc = () => {
       <br>
       <div>
         <button @click="wfc">Generate wave function collapse</button>
+      </div>
+      <br>
+      <div>
+        <button @click="reset">Reset world</button>
       </div>
     </div>
   </div>
